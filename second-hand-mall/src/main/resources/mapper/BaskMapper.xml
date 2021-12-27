@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="itd.secondhandmall.dao.BaskMapper">
+
+    <select id="getAllBaskById" resultType="itd.secondhandmall.pojo.Bask">
+        select * from
+        bask
+        where
+        id = #{id}
+    </select>
+
+    <update id="updateBask" parameterType="itd.secondhandmall.pojo.Bask">
+            update bask
+            set
+            <if test="isselect==0">
+                isselect = 1
+            </if>
+            <if test="isselect==1">
+                isselect = 0
+            </if>
+            where id = #{id} and tid = #{tid}
+    </update>
+
+    <delete id="deleteBask" parameterType="itd.secondhandmall.pojo.Bask">
+        delete from bask
+        where id = #{id} and tid = #{tid}
+    </delete>
+</mapper>
